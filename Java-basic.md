@@ -148,7 +148,7 @@ java中多线程的创建方式：
 >
 > 缓存一致性协议保证每个缓存使用的共享变量的副本都是一致的，核心思想是当cpu写数据的时候，如果发现操作的变量是共享变量，（在其他的cpu缓存中也存在此变量的副本），会发出信号给其他的cpu通知将缓存置为无效状态，当其他的线程需要读取这个变量时，发现当前cpu的缓存是无效的，那么他就回取内存的最新值来覆盖缓存，从而保证每个线程读取到的cpu缓存中的共享变量为最新的
 >
-> <img src="/Users/xiaoqiang/Pictures/212219343783699.jpg" width=100% height=300 title='数据流' alt='loadingfail'></img>
+> <img src="https://cdn.jsdelivr.net/gh/MeqiangX/cloud-img@master/212219343783699.jpg" width=100% height=300 title='数据流' alt='loadingfail'></img>
 
 Volatile为实例域的同步访问提供了一种免锁机制，如果变量被声明为volatile，那么编译器和jvm就知道这个域是可能被另一个线程并发更新的。
 
@@ -233,7 +233,7 @@ public class AtomicInteger extends Number implements java.io.Serializable {
 
 ​	Unsafe类，和C/C++不同，java没有直接对内核和操作系统，都是通过jvm，当然也不能直接操作一块内存区域，Unsafe就是jvm提供给我们操作管理内存的这么一个类，他的全限定名是sun.misc.Unsafe，一般开发应用者不会用到这个类，管理操作内存是比较危险的一件事情，所以在java中他被修饰为final，并且构造器私有化，只能通过反射来得到，当然类中也提供了静态方法通过类加载器来得到，原理相同，这个类中主要包含内存管理的一些api：
 
-![alt 加载失败](/Users/xiaoqiang/Pictures/11963487-607a966eba2eed13.png "Unsafe常用功能")
+![alt 加载失败](https://cdn.jsdelivr.net/gh/MeqiangX/cloud-img@master/20210530101914.jpg "Unsafe常用功能")
 
 原子操作类和线程安全集合底层都是操作unsafe，依靠unsafe的cas和volatile来完成
 
@@ -252,7 +252,7 @@ static {
 
 即：在类加载后就固定了，思考下这个属性的作用，通过unsafe.objectFieldOffse()方法得到value在内存中相对AtomicInteger实例的偏移量，通过valueOffset来得到value在AtomicInteger对象中的位置是这个属性的核心作用，图解：
 
-![alt loading](/Users/xiaoqiang/Pictures/6824285-2b78f25356cfd9fb.png "valueOffset图解")
+![alt loading](https://cdn.jsdelivr.net/gh/MeqiangX/cloud-img@master/20210530101930.png "valueOffset图解")
 
 - valueOffset可以定位到AtomicInteger中value的位置
 - AtomicInteger中valueOffset是固定的（static final）,不因不同实例而改变，随着类文件被加载的jvm，相对于value的偏移量就确定了
@@ -405,7 +405,7 @@ public final native boolean compareAndSwapInt(Object var1, long valueOffset, int
 
    自定义类加载器 --> AppClassLoader  --> ExtClassLoader --> BootStrapClassLoader
 
-   <img src='/Users/xiaoqiang/Pictures/classloader.jpg' width=400 height=200 alt='error' title='类加载器'></img>
+   <img src='https://cdn.jsdelivr.net/gh/MeqiangX/cloud-img@master/20210530102055.jpg' width=400 height=200 alt='error' title='类加载器'></img>
 
    java类从加载到卸载拢共7个步骤：
 
@@ -447,7 +447,7 @@ public final native boolean compareAndSwapInt(Object var1, long valueOffset, int
 
    jvm内存可分为程序计数器，虚拟机栈，方法区，堆区，运行时常量池，本地方法栈，其中程序计数器，虚拟机栈，本地方法栈，是每个线程各自区分的，程序计数器存放的是线程执行的jvm指令地址，虚拟机栈就是我们常说的栈区，存放的是栈桢，栈桢指向的内存结构包括（局部变量表，操作数栈，动态链接，返回的代码位置（方法正常退出或者异常退出的定义））本地方法栈和虚拟机栈类似，但是本地方法栈中存的是程序对本地方法native的调用栈桢；方法区和堆区，运行区常量池是线程共享的，方法区中就是所有加载进jvm的类对象模版，堆区是存放的引用类型的存储空间和引用，运行区常量池存放各种常量
 
-   <img src='/Users/xiaoqiang/Pictures/rammodel.png'></img>
+   <img src='https://cdn.jsdelivr.net/gh/MeqiangX/cloud-img@master/20210530102128.png'></img>
 
 4. GC垃圾回收 
 
