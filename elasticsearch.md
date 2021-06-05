@@ -8,7 +8,7 @@ docker pull docker.elastic.co/elasticsearch/elasticsearch:版本号（7.6.2）
 
 ```shell
 # 端口绑定 并重命名
-$ docker run -d --name es -p 9200:9200 -p 9300:9300 -e "discorvery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:7.6.2
+$ docker run -d --name es -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:7.6.2
 ```
 
 > kibana安装
